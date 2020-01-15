@@ -33,4 +33,5 @@ I will be using a couple of extensions for the IDE:
 - [C/C++](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools) for C language support
 
 # Credits
-Huge thanks to [geokon](https://github.com/geokon-gh) for his article on the topic https://geokon-gh.github.io/bluepill/ that really helped me get this going.
+Huge thanks to [geokon](https://github.com/geokon-gh) for his article on the topic [Bluepill: a GCC/CMake build environment ..
+](https://geokon-gh.github.io/bluepill) that really helped me get this going.
