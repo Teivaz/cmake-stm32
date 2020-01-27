@@ -8,8 +8,9 @@ MEMORY
 {
 	ram (xrw) : ORIGIN = 0x20000000, LENGTH = 2K
 	flash (rx) : ORIGIN = 0x08000000, LENGTH = 16K
+	eeprom (rw) : ORIGIN = 0x08080000, LENGTH = 512
 }
-PROVIDE(_stack = ORIGIN(ram) + LENGTH(ram));
+PROVIDE(__stack = ORIGIN(ram) + LENGTH(ram));
 
 EXTERN(vector_table);
 ENTRY(reset_handler);
@@ -17,7 +18,7 @@ ENTRY(reset_handler);
 SECTIONS
 {
 	.text : {
-		*(.vectors)
+		KEEP(*(.vectors))
 		*(.text*)
 		. = ALIGN(4);
 	} >flash
