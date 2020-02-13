@@ -10,17 +10,20 @@ set(linker_script "${CMAKE_CURRENT_LIST_DIR}/stm32l011f4.ld")
 set(device_name "STM32L011xx")
 
 set(c_compile_options
+	# CPU specific
 	"-mcpu=cortex-m0plus"
-	"-g3"
-	"-c"
-	"-O0"
-	"-ffunction-sections"
-	"-fdata-sections"
-	"-Wall"
-	"-fstack-usage"
-	"--specs=nano.specs"
 	"-mfloat-abi=soft"
 	"-mthumb"
+	# Non-CPU specific
+	"--specs=nano.specs"
+	"-ffunction-sections"
+	"-fdata-sections"
+	"-fstack-usage"
+	# Other options
+	"-g3"
+	"-c"
+	"-Os"
+	"-Wall"
 )
 	
 set(compile_definitions "${device_name}")
@@ -32,13 +35,12 @@ endif()
 
 set(link_flags
 	"-mcpu=cortex-m0plus \
-	-T\"${linker_script}\" \
-	--specs=nosys.specs -Wl,-Map=\"${PROJECT_NAME}.map\" \
+	-mfloat-abi=soft \
+	-T\"${CMAKE_CURRENT_LIST_DIR}/stm32l011f4.ld\" \
+	-Wl,-Map=\"${PROJECT_NAME}.map\" \
 	-Wl,--gc-sections \
 	-static \
 	--specs=nano.specs \
-	-mfloat-abi=soft \
-	-mthumb \
 	-Wl,--start-group -lc -lm -Wl,--end-group"
 )
 add_compile_options("${c_compile_options}>")
