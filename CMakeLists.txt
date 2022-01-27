@@ -43,7 +43,7 @@ set(link_flags
 	--specs=nano.specs \
 	-Wl,--start-group -lc -lm -Wl,--end-group"
 )
-add_compile_options("${c_compile_options}>")
+add_compile_options("${c_compile_options}")
 add_compile_definitions("${compile_definitions}")
 
 file(GLOB_RECURSE sources "src/*.[c|h]")
